@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>Text to Handwriting</title>
+
+  <!-- Default Fonts -->
+  <link rel="stylesheet"
+    href="https://fonts.googleapis.com/css?family=Homemade+Apple|Roboto|Caveat|Liu+Jian+Mao+Cao&display=swap" />
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="./css/index.css" />
+</head>
+
+<body>
+  <div class="container">
+    <div class="row m-5">
+      <div class="col text-center">
+        <h1 class="display-1">Text-to-Handwriting</h1>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-sm-12 col-md-12 col-lg-6">
+        <div>
+          <h2>Input</h2>
+          <label for="note">Type/Paste text here</label>
+        </div>
+
+        <div id="page" class="page margined lines">
+          <div id="top-margin" class="top-margin">
+            <div id="top-left-margin" contenteditable="true" class="top-left-margin"></div>
+            <div id="top-right-margin" contenteditable="true" class="top-right-margin"></div>
+          </div>
+          <div>
+            <div id="bottom-left-margin" contenteditable="true" class="paper-content bottom-left-margin"></div>
+            <div id="bottom-right-margin" contenteditable="true" class="paper-content bottom-right-margin">
+              <div>
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc cursus tristique urna ut malesuada. In eu
+                neque eu nibh pulvinar placerat. Vivamus tempor placerat ex ut eleifend. Nulla aliquet magna lacus, id
+                rutrum mauris porta et.
+              </div>
+              <br>
+              <div>
+                Suspendisse vehicula metus sit amet dictum ullamcorper. Cras eleifend ligula non tristique imperdiet.
+                Nam
+                sed porttitor tortor, eu placerat lectus. In bibendum imperdiet neque id maximus. Praesent nec enim
+                sodales, pellentesque leo vel, gravida augue. Proin convallis mauris massa, a accumsan tellus consequat
+                quis.
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-sm-12 col-md-12 col-lg-6 pl-5">
+
+      </div>
+    </div>
+  </div>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-b5kHyXgcpbZJO/tY9Ul7kGkf1S0CWuKcCD38l8YkeH8z8QjE0GmW1gYU5S9FOnJ0" crossorigin="anonymous">
+  </script>
+  <script src="https://code.jquery.com/jquery-2.2.4.min.js"
+    integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
+  <script>
+    function roundFontSize(value, step) {
+      var inv = 1.0 / step;
+      return Math.round(value * inv) / inv;
+    }
+
+    function pageFormat() {
+      var width = parseInt($('#page').css('width'), 10) - 2;
+      var fontSizeNormalized = roundFontSize(width * (5 / 215.9), 0.5);
+
+      /* RESPONSIVE DESIGN */
+      $('#page').css('height', width * (279.4 / 215.9));
+      $('#page').css('font-size', fontSizeNormalized + 'pt');
+      $('#top-margin').css('height', width * (50 / 400));
+      $('#top-left-margin').css('width', width * (50 / 400));
+      $('#top-left-margin').css('height', width * (50 / 400));
+      $('#top-right-margin').css('width', width - width * (50 / 400));
+      $('#top-right-margin').css('height', width * (50 / 400));
+      $('#bottom-left-margin').css('width', width * (50 / 400));
+      $('#bottom-left-margin').css('height', width * (279.4 / 215.9) - width * (50 / 400));
+      $('#bottom-right-margin').css('width', width - width * (50 / 400));
+      $('#bottom-right-margin').css('height', width * (279.4 / 215.9) - width * (50 / 400));
+    }
+
+    /* EVENTS */
+    $(window).resize(pageFormat);
+
+    /* INITIALIZE FUNCTIONS */
+    pageFormat();
+  </script>
+</body>
+
+</html>
